@@ -13,20 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
-});
 
-Auth::routes();
+
+Auth::routes([
+    'register' => false,
+    'reset'    => false,
+    'verify' => false
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'getQuizQuestions'])->middleware('auth');
+Route::get('user/quiz/{quizId}',[App\Http\Controllers\ExamController::class, 'getQuizQuestions'])->middleware('auth');
 
+Route::group(['middleware' => 'isAdmin'], function(){
+    Route::get('/', function () {
+        return view('admin.index');
+    });
 
     Route::resource('quiz', App\Http\Controllers\QuizController::class);
-	Route::resource('question', App\Http\Controllers\QuestionController::class);
-	Route::resource('user', App\Http\Controllers\UserController::class);
+    Route::resource('question', App\Http\Controllers\QuestionController::class);
+    Route::resource('user', App\Http\Controllers\UserController::class);
+    Route::get('/quiz/{id}/questions', [App\Http\Controllers\QuizController::class, 'question'])->name('quiz.question');
+});
 
-	Route::get('/quiz/{id}/questions', [App\Http\Controllers\QuizController::class, 'question'])->name('quiz.question');
+
+
+
+
 
 	Route::get('exam/assign',[App\Http\Controllers\ExamController::class, 'create'])->name('user.exam');
 	Route::post('exam/assign',[App\Http\Controllers\ExamController::class, 'assignExam'])->name('exam.assign');
