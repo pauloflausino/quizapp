@@ -24,6 +24,8 @@ Auth::routes([
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'getQuizQuestions'])->middleware('auth');
 Route::get('user/quiz/{quizId}',[App\Http\Controllers\ExamController::class, 'getQuizQuestions'])->middleware('auth');
+Route::post('quiz/create', [App\Http\Controllers\ExamController::class, 'postQuiz'])->middleware('auth');
+Route::get('/result/user/{userId}/quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'viewResult'])->middleware('auth');
 
 Route::group(['middleware' => 'isAdmin'], function(){
     Route::get('/', function () {

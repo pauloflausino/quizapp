@@ -76,13 +76,8 @@
                 userResponses:Array(this.quizQuestions.length).fill(false),
                 currentQuestion:0,
                 currentAnswer:0
-
-
-
             }
-        },
-
-        
+        },        
         methods:{
             next(){
                 this.questionIndex++
