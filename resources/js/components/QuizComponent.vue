@@ -49,7 +49,8 @@
                     <div v-show="questionIndex===questions.length">
                         <p>
                             <center>
-                                You got:{{score()}}/{{questions.length}}
+                                You got:{{score()}}/{{questions.length}}  <br>
+                                Your Score: {{score() * 10}}
 
                             </center>
                         </p>

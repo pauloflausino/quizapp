@@ -5469,6 +5469,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['quizid', 'quizQuestions', 'hasQuizPlayed'],
   data: function data() {
@@ -5494,6 +5495,11 @@ __webpack_require__.r(__webpack_exports__);
       return this.userResponses.filter(function (val) {
         return val === true;
       }).length;
+    },
+    myscore: function myscore() {
+      return this.userResponses.filter(function (val) {
+        return val === true;
+      }).length * 10;
     },
     postuserChoice: function postuserChoice() {
       axios.post('/quiz/create', {
@@ -28398,6 +28404,8 @@ var render = function () {
                             _vm._s(_vm.score()) +
                             "/" +
                             _vm._s(_vm.questions.length) +
+                            "\n                            Your Score: " +
+                            _vm._s(_vm.myscore()) +
                             "\n\n                        "
                         ),
                       ]),
