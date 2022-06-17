@@ -18,7 +18,6 @@
                             <div class="card-body">
                                 <p><h3>{{$quiz->name}}</h3></p>
                                 <p>About Exam:{{$quiz->description}}</p>
-                                <p>Time allocated:{{$quiz->minutes}} minutes</p>
                                 <p>Number of questions:{{$quiz->questions->count()}}</p>
                                 <p>
                                     @if(!in_array($quiz->id,$wasQuizCompleted))

@@ -47,6 +47,7 @@ class HomeController extends Controller
             ->pluck('quiz_id')->toArray();
 
 
+
         return view('home',compact('quizzes','wasQuizCompleted','isExamAssigned'));
     }
 }

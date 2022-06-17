@@ -9,7 +9,7 @@
                     </div>
 
                     <div class="card-body">
-                       <span class="float-right" style="color:red;">{{time}}</span>
+                       
 
 
                         <div v-for="(question,index) in questions">
@@ -68,39 +68,21 @@
 
     export default {
 
-        props:['quizid','quizQuestions','hasQuizPlayed','times'],
+        props:['quizid','quizQuestions','hasQuizPlayed'],
         data(){
             return{
                 questions:this.quizQuestions,
                 questionIndex:0,
                 userResponses:Array(this.quizQuestions.length).fill(false),
                 currentQuestion:0,
-                currentAnswer:0,
-                clock: moment(this.times*60 * 1000),
+                currentAnswer:0
 
 
 
             }
         },
 
-        mounted() {
-            setInterval(() => {
-            this.clock = moment(this.clock.subtract(1, 'seconds'))
-            }, 1000);
-
-
-
-        },
-            computed: {
-            time: function(){
-            var minsec=this.clock.format('mm:ss');
-            if(minsec=='00:00'){
-                alert('timeout')
-                window.location.reload();
-            }
-                return minsec
-            }
-        },
+        
         methods:{
             next(){
                 this.questionIndex++
@@ -126,7 +108,7 @@
                 }).then((response)=>{
                     console.log(response)
                 }).catch((error)=>{
-                    alert("Error!")
+                    
                 });
             }
 

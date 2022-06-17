@@ -50,18 +50,6 @@
 			</div>
 
 			<div class="control-group">
-				<label class="control-lable" for="name">Time(in minute)</label>
-				<div class="controls">
-					<input type="text" name="minutes" class="span8 @error('minutes') is-invalid @enderror" placeholder="Duration of a quiz" value="{{$quiz->minutes}} " >
-				</div>
-			   @error('minutes')
-			        <span class="invalid-feedback" role="alert">
-			            <strong>{{ $message }}</strong>
-			        </span>
-			    @enderror
-			</div>
-
-			<div class="control-group">
 				<div class="controls">
 					<button type="submit" class="btn btn-success">Update</button>
 				</div>

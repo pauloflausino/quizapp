@@ -100,8 +100,7 @@ class QuizController extends Controller
         return $this->validate($request,[
 
             'name'=>'required|string',
-            'description'=>'required|min:3|max:500',
-            'minutes'=>'required|integer'
+            'description'=>'required|min:3|max:500'
         ]);
 
     }

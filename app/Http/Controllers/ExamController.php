@@ -7,6 +7,7 @@ use App\Models\Quiz;
 use App\Models\Result;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Answer;
 use DB;
 
 class ExamController extends Controller
@@ -60,7 +61,7 @@ class ExamController extends Controller
         }
 
         $quiz = Quiz::find($quizId);
-        $time = Quiz::where('id',$quizId)->value('minutes');
+        
         $quizQuestions = Question::where('quiz_id',$quizId)->with('answers')->get();
         $authUserHasPlayedQuiz = Result::where(['user_id'=>$authUser,'quiz_id'=>$quizId])->get();
 
@@ -71,7 +72,7 @@ class ExamController extends Controller
             return redirect()->to('/home')->with('error','You already participated in this exam');
         }
 
-        return view('quiz',compact('quiz','time','quizQuestions','authUserHasPlayedQuiz'));
+        return view('quiz',compact('quiz','quizQuestions','authUserHasPlayedQuiz'));
 
     }
 
@@ -113,13 +114,19 @@ class ExamController extends Controller
         $userCorrectedAnswer = Answer::whereIn('id',$ans)->where('is_correct',1)->count();
         $userWrongAnswer = $totalQuestions-$userCorrectedAnswer;
         if($attemptQuestion){
-            $percentage = ($userCorrectedAnswer/$totalQuestions)*100;
+            //$percentage = ($userCorrectedAnswer/$totalQuestions)*100;
+            $score = $userCorrectedAnswer * 10;
         }else{
-            $percentage=0;
+            //$percentage=0;
+            $score = 0;
         }
+
+        if(empty($user)){
+            $user = $userId;
+        };
        
 
-        return view('backend.result.result',compact('user','results','totalQuestions','attemptQuestion','userCorrectedAnswer','userWrongAnswer','percentage','quiz'));
+        return view('backend.result.result',compact('user','results','totalQuestions','attemptQuestion','userCorrectedAnswer','userWrongAnswer','score','quiz'));
     }
 
 }

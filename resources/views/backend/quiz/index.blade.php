@@ -22,7 +22,6 @@
 									  <th>#</th>
 									  <th>Name</th>
 									  <th>Description</th>
-									  <th>Minutes</th>
 									  <th></th>
 									  <th></th>
 									  <th></th>
@@ -35,7 +34,6 @@
 									  <td>{{$key+1}}</td>
 									  <td>{{$quiz->name}}</td>
 									  <td>{{$quiz->description}}</td>
-									  <td>{{$quiz->minutes}}</td>
 									  <td>
 									  	<a href="{{route('quiz.question',[$quiz->id])}}">
 									  		<button class="btn btn-inverse">View Questions</button>

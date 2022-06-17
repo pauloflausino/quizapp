@@ -21,7 +21,7 @@
 									  <th>Attempt Question</th>
 									  <th>Correct Answer</th>
 									  <th>Wrong Answer</th>
-									  <th>Percentage</th>
+									  <th>Score</th>
 									</tr>
 								  </thead>
 								  <tbody>
@@ -33,7 +33,7 @@
 									  <td>{{$attemptQuestion}}</td>
 									  <td>{{$userCorrectedAnswer}}</td>
 									  <td>{{$userWrongAnswer}}</td>
-									  <td>{{round($percentage,2)}}</td>
+									  <td>{{$score}}</td>
 									    
 									  
 									</tr>
